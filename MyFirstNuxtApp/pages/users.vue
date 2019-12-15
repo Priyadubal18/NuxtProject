@@ -1,13 +1,22 @@
 <template>
-  <h1>{{welcomeMessage}}</h1>
+  <div>
+    <input type="text" v-model="userName" />
+    <button @click="submitUser">Submit</button>
+    <nuxt-child />
+  </div>
 </template>
 
 <script>
 export default {
   data: function() {
     return {
-      welcomeMessage: "Welcome to  user page"
+      userName: ""
     };
+  },
+  methods: {
+    submitUser() {
+      this.$router.push(`/users/${this.userName}`);
+    }
   }
 };
 </script>
