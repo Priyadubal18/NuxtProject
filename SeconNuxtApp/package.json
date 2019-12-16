@@ -1,0 +1,17 @@
+{
+  "name": "SeconNuxtApp",
+  "version": "1.0.0",
+  "description": "My striking Nuxt.js project",
+  "author": "Priyadubal18",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {}
+}

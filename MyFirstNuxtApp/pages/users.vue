@@ -17,7 +17,8 @@ export default {
     submitUser() {
       this.$router.push(`/users/${this.userName}`);
     }
-  }
+  },
+  layout: "user"
 };
 </script>
 
