@@ -1,12 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">Title of the Post</h1>
+      <h1 class="post-title">{{loadedPost.title}}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on XXX</div>
-        <div class="post-detail">Written by name</div>
+        <div class="post-detail">{{loadedPost.updatesDate}}</div>
+        <div class="post-detail">{{loadedPost.author}}</div>
       </div>
-      <p class="post-content">Content of the post</p>
+      <p class="post-content">{{loadedPost.content}}</p>
     </section>
     <section class="post-feedback">
       <p>Let me know what you think about the post, send a mail to xyz@gmail.com</p>
@@ -15,7 +15,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: {
+          id: "1",
+          title: `First Post ID : ${context.params.id}`,
+          previewText: "This is our first post!",
+          author: "Priya",
+          updatesDate: new Date(),
+          content: "Some Dummy Text",
+          thumbnail:
+            "https://annenberg.usc.edu/sites/default/files/styles/news_featured_hero/public/womenintech.jpg?itok=GtitJQP3&timestamp=1567532369"
+        }
+      });
+    }, 1000);
+  }
+};
 </script>
 
 <style scoped>
