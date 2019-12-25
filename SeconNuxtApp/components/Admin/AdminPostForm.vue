@@ -5,26 +5,18 @@
     <AppControlInput v-model="editedPost.thumbnail">Thumbnail Link</AppControlInput>
     <AppControlInput control-type="textarea" v-model="editedPost.content">Content</AppControlInput>
     <AppControlInput control-type="textarea" v-model="editedPost.previewText">Preview Text</AppControlInput>
-
     <AppButton type="submit">Save</AppButton>
-
     <AppButton type="button" style="margin-left: 10px" btn-style="cancel" @click="onCancel">Cancel</AppButton>
   </form>
 </template>
 
 <script>
-import AppControlInput from "~/components/UI/AppControlInput.vue";
-import AppButton from "~/components/UI/AppButton.vue";
 export default {
   props: {
     post: {
       type: Object,
       required: false
     }
-  },
-  components: {
-    AppControlInput,
-    AppButton
   },
   data() {
     return {

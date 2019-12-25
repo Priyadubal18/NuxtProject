@@ -7,7 +7,6 @@ const createStore = () => {
             loadedPosts: []
         },
         mutations: {
-
             setPosts(state, posts) {
                 debugger;
                 state.loadedPosts = posts
