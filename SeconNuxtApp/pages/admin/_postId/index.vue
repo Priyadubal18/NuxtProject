@@ -23,22 +23,17 @@ export default {
       .then(res => {
         let loadedPost = res.data;
         return {
-          loadedPost
+          loadedPost: { ...res.data, id: context.params.postId }
         };
       })
       .catch(e => context.error(e));
   },
   methods: {
-    onSubmitted(editedData) {
-      axios
-        .put(
-          `https://nuxtintegration.firebaseio.com/posts/${this.$route.params.postId}.json`,
-          editedData
-        )
-        .then(result => {
-          this.$router.push("/admin");
-        })
-        .catch(e => console.log(e));
+    onSubmitted(editedPost) {
+      debugger;
+      this.$store
+        .dispatch("editPost", editedPost)
+        .then(res => this.$router.push("/admin"));
     }
   }
 };
