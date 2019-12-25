@@ -15,6 +15,7 @@ export default {
   },
   computed: {
     loadedPosts() {
+      debugger;
       return this.$store.getters.loadedPosts;
     }
   }
