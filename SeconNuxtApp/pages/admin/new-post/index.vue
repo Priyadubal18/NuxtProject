@@ -8,7 +8,6 @@
 
 <script>
 import AdminPostForm from "~/components/Admin/AdminPostForm.vue";
-import axios from "axios";
 
 export default {
   layout: "admin",
