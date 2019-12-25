@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import axios from 'axios'
 
 const createStore = () => {
     return new Vuex.Store({
@@ -14,35 +15,15 @@ const createStore = () => {
         },
         actions: {
             nuxtServerInit(vuexContext, context) {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        vuexContext.commit('setPosts', [
-                            {
-                                id: "1",
-                                title: "First Post",
-                                previewText: "This is our first post!",
-                                thumbnail:
-                                    "https://annenberg.usc.edu/sites/default/files/styles/news_featured_hero/public/womenintech.jpg?itok=GtitJQP3&timestamp=1567532369"
-                            },
-                            {
-                                id: "2",
-                                title: "Second Post",
-                                previewText: "This is our second post!",
-                                thumbnail:
-                                    "https://annenberg.usc.edu/sites/default/files/styles/news_featured_hero/public/womenintech.jpg?itok=GtitJQP3&timestamp=1567532369"
-                            },
-                            {
-                                id: "3",
-                                title: "Third Post",
-                                previewText: "This is our third post!",
-                                thumbnail:
-                                    "https://annenberg.usc.edu/sites/default/files/styles/news_featured_hero/public/womenintech.jpg?itok=GtitJQP3&timestamp=1567532369"
-                            }
-                        ]
-                        );
-                        resolve();
-                    }, 1500);
-                });
+                return axios.get('https://nuxtintegration.firebaseio.com/posts.json')
+                    .then(res => {
+                        const postsArray = [];
+                        for (const key in res.data) {
+                            postsArray.push({ ...res.data[key], id: key });
+                        }
+                        vuexContext.commit('setPosts', postsArray);
+                    })
+                    .catch(e => context.erro(e))
             },
             setPosts(vuexContext, posts) {
                 vuexContext.commit('setPosts', posts)
